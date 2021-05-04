@@ -1,0 +1,32 @@
+package io.qwinix.qiintellis360.ProjectedVsAttainedRevenueComparison.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.qwinix.qiintellis360.ProjectedVsAttainedRevenueComparison.model.Revenue;
+import io.qwinix.qiintellis360.ProjectedVsAttainedRevenueComparison.service.RevenueService;
+
+
+
+@RestController
+public class RevenueController {
+	
+	@Autowired
+	private RevenueService service;
+
+	@GetMapping("/revenues")
+	public List<Revenue> getAllComparision() {
+		return service.findAll();
+	}
+	
+	@GetMapping("/revenue/{year}")
+	public Revenue getByYear(
+			@PathVariable String year
+			) {
+				return service.findByYear(year);
+	}
+}
